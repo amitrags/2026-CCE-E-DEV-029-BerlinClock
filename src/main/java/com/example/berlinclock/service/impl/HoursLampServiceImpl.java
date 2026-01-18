@@ -3,9 +3,12 @@ package com.example.berlinclock.service.impl;
 import com.example.berlinclock.dto.LampColor;
 import com.example.berlinclock.service.HoursLampService;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Arrays;
 import static com.example.berlinclock.dto.LampColor.*;
 
+@Service
 class HoursLampServiceImpl implements HoursLampService {
 
   private static final int LAMP_COUNT = 4;
