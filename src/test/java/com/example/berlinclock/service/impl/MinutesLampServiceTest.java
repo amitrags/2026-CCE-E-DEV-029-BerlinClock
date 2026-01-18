@@ -61,8 +61,16 @@ public class MinutesLampServiceTest {
             service.getOneMinutesLamps(1)
     );
     assertArrayEquals(
+            new LampColor[] { LampColor.O, LampColor.O, LampColor.O, LampColor.O },
+            service.getOneMinutesLamps(5)
+    );
+    assertArrayEquals(
             new LampColor[] { LampColor.Y, LampColor.Y, LampColor.O, LampColor.O },
             service.getOneMinutesLamps(12)
+    );
+    assertArrayEquals(
+            new LampColor[] { LampColor.Y, LampColor.Y, LampColor.Y, LampColor.Y },
+            service.getOneMinutesLamps(59)
     );
     assertArrayEquals(
             new LampColor[] { LampColor.O, LampColor.O, LampColor.O, LampColor.O },
