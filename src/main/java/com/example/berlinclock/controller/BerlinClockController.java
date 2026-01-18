@@ -13,13 +13,16 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.springframework.stereotype.Component;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Pattern;
 
 @Component
 @Path("/api/convert")
 public class BerlinClockController {
+  
   private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+  private static final Pattern TIME_PATTERN = Pattern.compile("^([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$");
   
   private final SecondsLampService secondsLampService;
   private final HoursLampService hoursLampService;
@@ -41,6 +44,18 @@ public class BerlinClockController {
   @Path("/berlin")
   @Produces(MediaType.TEXT_PLAIN)
   public Response convert(@QueryParam("time") String time) {
+    // Validate input
+    if (time == null || time.isBlank()) {
+      return Response.status(Response.Status.BAD_REQUEST)
+              .entity("Missing required parameter: time. Expected format: HH:mm:ss")
+              .build();
+    }
+    
+    if (!TIME_PATTERN.matcher(time).matches()) {
+      return Response.status(Response.Status.BAD_REQUEST)
+              .entity("Invalid time format: '" + time + "'. Expected format: HH:mm:ss (e.g., 13:17:45)")
+              .build();
+    }
     LocalTime localTime = LocalTime.parse(time, TIME_FORMATTER);
     
     int hours = localTime.getHour();
