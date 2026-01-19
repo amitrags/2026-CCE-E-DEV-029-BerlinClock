@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 @Component
-@Path("/api/convert")
+@Path("/api/berlin")
 public class BerlinClockController {
   
   private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -41,7 +41,6 @@ public class BerlinClockController {
    * Output Example - ORROORRROYYROOOOOOOOOYYOO
    */
   @GET
-  @Path("/berlin")
   @Produces(MediaType.TEXT_PLAIN)
   public Response convert(@QueryParam("time") String time) {
     // Validate input
