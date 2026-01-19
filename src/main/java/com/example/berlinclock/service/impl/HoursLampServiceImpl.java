@@ -34,4 +34,9 @@ class HoursLampServiceImpl implements HoursLampService {
     Arrays.fill(lamps, 0, litCount, R);
     return lamps;
   }
+
+  @Override
+  public int getHours(LampColor[] hoursLamps) {
+    return 0;
+  }
 }
