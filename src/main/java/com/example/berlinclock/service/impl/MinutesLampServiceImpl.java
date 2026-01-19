@@ -47,4 +47,9 @@ class MinutesLampServiceImpl implements MinutesLampService {
     
     return lamps;
   }
+  
+  @Override
+  public int getMinutes(LampColor[] minuteLamps) {
+    return 0;
+  }
 }

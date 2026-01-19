@@ -5,6 +5,8 @@ import com.example.berlinclock.service.MinutesLampService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.example.berlinclock.dto.LampColor.*;
 
 public class MinutesLampServiceTest {
 
@@ -76,5 +78,28 @@ public class MinutesLampServiceTest {
             new LampColor[] { LampColor.O, LampColor.O, LampColor.O, LampColor.O },
             service.getOneMinutesLamps(0)
     );
+  }
+
+  @Test
+  void testGetMinutes() {
+    assertEquals(0, service.getMinutes(new LampColor[]{
+            O, O, O, O, O, O, O, O, O, O, O,
+            O, O, O, O
+    }));
+
+    assertEquals(17, service.getMinutes(new LampColor[]{
+            Y, Y, R, O, O, O, O, O, O, O, O,
+            Y, Y, O, O
+    }));
+
+    assertEquals(55, service.getMinutes(new LampColor[]{
+            Y, Y, R, Y, Y, R, Y, Y, R, Y, Y,
+            O, O, O, O
+    }));
+
+    assertEquals(59, service.getMinutes(new LampColor[]{
+            Y, Y, R, Y, Y, R, Y, Y, R, Y, Y,
+            Y, Y, Y, Y
+    }));
   }
 }
