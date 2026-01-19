@@ -1,8 +1,9 @@
 package com.example.berlinclock.dto;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Enum representing lamp colors with proper JSON serialization.
  */
@@ -10,17 +11,25 @@ public enum LampColor {
   Y('Y'), R('R'), O('O');
   
   private final char symbol;
+  private static final Map<Character, LampColor> lookupMap = new HashMap<>();
+
+  static {
+        for (LampColor color : values()) {
+            lookupMap.put(color.symbol, color);
+        }
+    }
   
   LampColor(char symbol) {
     this.symbol = symbol;
-  }
+  } 
   
-  public static LampColor fromChar(char c) {
-     return Arrays
-            .stream(LampColor.values())
-            .filter(lampColor -> (c == lampColor.symbol))
-            .toList().get(0) ;
-  }
+public static LampColor fromChar(char c) {
+    LampColor color = lookupMap.get(c);
+    if (color == null) {
+        throw new IllegalArgumentException("Invalid character for LampColor: " + c);
+    }
+    return color;
+}
   
   @JsonValue
   public String getSymbol() {

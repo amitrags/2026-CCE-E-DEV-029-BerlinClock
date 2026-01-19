@@ -1,19 +1,19 @@
 package com.example.berlinclock.service.impl;
 
-import com.example.berlinclock.dto.LampColor;
-import com.example.berlinclock.service.HoursLampService;
+import java.util.Arrays;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import static com.example.berlinclock.dto.LampColor.*;
+import com.example.berlinclock.dto.LampColor;
+import static com.example.berlinclock.dto.LampColor.O;
+import static com.example.berlinclock.dto.LampColor.R;
+import com.example.berlinclock.service.HoursLampService;
 
 @Service
 class HoursLampServiceImpl implements HoursLampService {
 
   private static final int LAMP_COUNT = 4;
 
-  //The upper row represents 5 hour blocks and is made up of 4 red lamps.
   @Override
   public LampColor[] getFiveHoursLamps(int hours) {
     LampColor[] lamps = new LampColor[LAMP_COUNT];
@@ -24,7 +24,6 @@ class HoursLampServiceImpl implements HoursLampService {
     return lamps;
   }
 
-  //The lower row represents 1 hour blocks and is also made up of 4 red lamps.
   @Override
   public LampColor[] getOneHoursLamps(int hours) {
     LampColor[] lamps = new LampColor[LAMP_COUNT];
