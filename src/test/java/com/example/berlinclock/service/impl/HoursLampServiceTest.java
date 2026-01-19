@@ -90,7 +90,7 @@ public class HoursLampServiceTest {
             R, O, O, O,
             O, O, O, O
     }));
-    assertEquals(5, service.getHours(new LampColor[]{
+    assertEquals(1, service.getHours(new LampColor[]{
             O, O, O, O,
             R, O, O, O
     }));

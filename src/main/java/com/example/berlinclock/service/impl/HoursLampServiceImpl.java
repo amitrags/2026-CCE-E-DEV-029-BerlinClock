@@ -37,6 +37,14 @@ class HoursLampServiceImpl implements HoursLampService {
 
   @Override
   public int getHours(LampColor[] hoursLamps) {
-    return 0;
+    int fiveHours = countActiveLamps(hoursLamps, 0, LAMP_COUNT) * 5;
+    int oneHours = countActiveLamps(hoursLamps, LAMP_COUNT, LAMP_COUNT * 2);
+    return fiveHours + oneHours;
+  }
+
+  private int countActiveLamps(LampColor[] lamps, int from, int to) {
+    return (int) Arrays.stream(lamps, from, to)
+            .filter(lamp -> lamp != O)
+            .count();
   }
 }
