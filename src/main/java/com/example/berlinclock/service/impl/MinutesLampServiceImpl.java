@@ -50,6 +50,14 @@ class MinutesLampServiceImpl implements MinutesLampService {
   
   @Override
   public int getMinutes(LampColor[] minuteLamps) {
-    return 0;
+    int fiveMinutes = countActiveLamps(minuteLamps, 0, FIVE_MIN_LAMP_COUNT) * 5; //weight 5
+    int oneMinutes = countActiveLamps(minuteLamps, FIVE_MIN_LAMP_COUNT, FIVE_MIN_LAMP_COUNT + ONE_MIN_LAMP_COUNT);//weight 1
+    return fiveMinutes + oneMinutes;
+  }
+
+  private int countActiveLamps(LampColor[] lamps, int from, int to) {
+    return  (int )Arrays.stream(lamps, from, to)
+            .filter(lamp -> lamp != O)
+            .count();
   }
 }
