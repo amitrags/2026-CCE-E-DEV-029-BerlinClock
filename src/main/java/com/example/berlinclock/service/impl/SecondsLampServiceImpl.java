@@ -6,19 +6,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 class SecondsLampServiceImpl implements SecondsLampService {
-
+  
   //The top seconds lamp is illuminated on even seconds and off on odd seconds.
   @Override
   public LampColor getSecondsLamp(int seconds) {
     return (seconds % 2 == 0) ? LampColor.Y : LampColor.O;
   }
   
-  //We cannot determine the number of seconds from the lamps.
-  //So we return 0 or 1 only
+  //We cannot determine the exact seconds from the lamp, only even/odd.
+  //Returns 0 for even (Y), 1 for odd (O)
   @Override
   public int getSeconds(LampColor[] seconds) {
-    return 0;
+    return seconds[0] == LampColor.Y ? 0 : 1;
   }
-  
 }
-
