@@ -12,6 +12,13 @@ class SecondsLampServiceImpl implements SecondsLampService {
   public LampColor getSecondsLamp(int seconds) {
     return (seconds % 2 == 0) ? LampColor.Y : LampColor.O;
   }
-
+  
+  //We cannot determine the number of seconds from the lamps.
+  //So we return 0 or 1 only
+  @Override
+  public int getSeconds(LampColor[] seconds) {
+    return 0;
+  }
+  
 }
 

@@ -17,4 +17,10 @@ public class SecondsLampServiceTest {
     assertEquals(LampColor.O, service.getSecondsLamp(1));   // odd
     assertEquals(LampColor.O, service.getSecondsLamp(59));
   }
+
+  @Test
+  void testGetSeconds() {
+    assertEquals(0, service.getSeconds(new LampColor[]{LampColor.Y}));
+    assertEquals(1, service.getSeconds(new LampColor[]{LampColor.O}));
+  }
 }
