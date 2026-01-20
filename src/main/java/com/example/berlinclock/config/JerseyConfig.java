@@ -11,6 +11,6 @@ public class JerseyConfig extends ResourceConfig {
   public JerseyConfig() {
     register(BerlinClockController.class);
     register(DigitalClockController.class);
-    //packages("src.main.java.com.example.berlinclock.controller");
+    //packages("com.example.berlinclock.controller");
   }
 }
