@@ -8,9 +8,12 @@ import com.example.berlinclock.service.SecondsLampService;
 @Service
 class SecondsLampServiceImpl implements SecondsLampService {
   
+  private static final int EVEN_DIVISOR = 2;
+
+
   @Override
   public LampColor getSecondsLamp(int seconds) {
-    return (seconds % 2 == 0) ? LampColor.Y : LampColor.O;
+    return (seconds % EVEN_DIVISOR == 0) ? LampColor.Y : LampColor.O;
   }
   
   //We cannot determine the exact seconds from the lamp, only even/odd.

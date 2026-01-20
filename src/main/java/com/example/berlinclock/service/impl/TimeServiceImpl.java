@@ -1,17 +1,18 @@
 package com.example.berlinclock.service.impl;
 
-import com.example.berlinclock.dto.LampColor;
-import com.example.berlinclock.service.HoursLampService;
-import com.example.berlinclock.service.MinutesLampService;
-import com.example.berlinclock.service.SecondsLampService;
-import com.example.berlinclock.service.TimeService;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.regex.Pattern;
+
+import org.springframework.stereotype.Service;
+
+import com.example.berlinclock.dto.LampColor;
+import com.example.berlinclock.service.HoursLampService;
+import com.example.berlinclock.service.MinutesLampService;
+import com.example.berlinclock.service.SecondsLampService;
+import com.example.berlinclock.service.TimeService;
 
 @Service
 class TimeServiceImpl implements TimeService {
@@ -76,7 +77,9 @@ class TimeServiceImpl implements TimeService {
   
   @Override
   public String convertToDigitalTime(String berlinTime) {
-    LampColor[] berlinTimeLamps = berlinTime.chars().mapToObj(c -> LampColor.fromChar((char) c)).toList().toArray(new LampColor[0]);
+    LampColor[] berlinTimeLamps = berlinTime.chars()
+                                  .mapToObj(c -> LampColor.fromChar((char) c))
+                                  .toArray(LampColor[]::new);
     
     int hours = hoursLampService.getHours(Arrays.copyOfRange(berlinTimeLamps, 1, 9));
     int minutes = minutesLampService.getMinutes(Arrays.copyOfRange(berlinTimeLamps, 9, 24));

@@ -13,13 +13,14 @@ import com.example.berlinclock.service.HoursLampService;
 class HoursLampServiceImpl implements HoursLampService {
 
   private static final int LAMP_COUNT = 4;
+  private static final int HOURS_PER_LAMP = 5;
 
   @Override
   public LampColor[] getFiveHoursLamps(int hours) {
     LampColor[] lamps = new LampColor[LAMP_COUNT];
     Arrays.fill(lamps, O);
 
-    int litCount = hours / 5;
+    int litCount = hours / HOURS_PER_LAMP;
     Arrays.fill(lamps, 0, litCount, R);
     return lamps;
   }
@@ -29,14 +30,14 @@ class HoursLampServiceImpl implements HoursLampService {
     LampColor[] lamps = new LampColor[LAMP_COUNT];
     Arrays.fill(lamps, O);
 
-    int litCount = hours % 5;
+    int litCount = hours % HOURS_PER_LAMP;
     Arrays.fill(lamps, 0, litCount, R);
     return lamps;
   }
 
   @Override
   public int getHours(LampColor[] hoursLamps) {
-    int fiveHours = countActiveLamps(hoursLamps, 0, LAMP_COUNT) * 5;
+    int fiveHours = countActiveLamps(hoursLamps, 0, LAMP_COUNT) * HOURS_PER_LAMP;
     int oneHours = countActiveLamps(hoursLamps, LAMP_COUNT, LAMP_COUNT * 2);
     return fiveHours + oneHours;
   }
